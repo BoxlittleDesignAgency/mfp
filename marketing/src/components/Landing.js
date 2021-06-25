@@ -65,7 +65,7 @@ const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
 export default function Album() {
   const classes = useStyles();
-  console.log("This is not important");
+  console.log("This is not important!!");
   return (
     <React.Fragment>
       <main>
