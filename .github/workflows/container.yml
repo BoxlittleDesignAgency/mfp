@@ -5,7 +5,7 @@ on:
     branches:
       - master
     paths:
-      - 'container/'
+      - 'container'
 
 defaults:
   run:
@@ -35,8 +35,7 @@ jobs:
           SOURCE_DIR: 'dist'
           DEST_DIR: 'container/latest'
 
-      - name: Sync to S3 Cloudfront
-        uses: raulanatol/aws-s3-docker-action@master
+      - uses: raulanatol/aws-s3-docker-action@master
         env:
           AWS_REGION: ${{ secrets.AWS_REGION }}
           AWS_S3_BUCKET_NAME: ${{ secrets.AWS_S3_BUCKET_NAME }}
