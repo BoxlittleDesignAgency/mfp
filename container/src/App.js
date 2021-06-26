@@ -6,7 +6,7 @@ import MarketingApp from './components/MarketingApp';
 import Header from './components/Header';
 
 export default () => {
-  console.log("this is inevitable.This must work!!@@@")
+  console.log("this is inevitable.This must work!!@@@@@@")
   return (<BrowserRouter >
       <div>
         <Header />
