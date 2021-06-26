@@ -5,11 +5,11 @@ on:
     branches:
       - master
     paths:
-      - 'mfp/container'
+      - 'container/**'
 
 defaults:
   run:
-    working-directory: mfp/container
+    working-directory: container
 
 jobs:
   deploy:
