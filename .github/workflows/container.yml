@@ -32,7 +32,7 @@ jobs:
           AWS_S3_BUCKET_NAME: ${{ secrets.AWS_S3_BUCKET_NAME }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           DISTRIBUTION_ID: ${{ secrets.AWS_DISTRIBUTION_ID }}
-          SOURCE_DIR: 'dist'
+          SOURCE_DIR: ${{ secrets.SOURCE }}
           DEST_DIR: 'container/latest'
 
       - uses: raulanatol/aws-s3-docker-action@master
@@ -41,7 +41,7 @@ jobs:
           AWS_S3_BUCKET_NAME: ${{ secrets.AWS_S3_BUCKET_NAME }}
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          SOURCE: 'dist'
+          SOURCE: ${{ secrets.SOURCE }}
           TARGET: 'container/latest'
           AWS_CLOUDFRONT_DISTRIBUTION_ID: ${{ secrets.AWS_CLOUDFRONT_DISTRIBUTION_ID }}
           AWS_CLOUDFRONT_INVALIDATION_PATH: '/container/latest/index.html'
