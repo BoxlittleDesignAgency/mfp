@@ -18,11 +18,14 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: yarn install
+        working-directory: container
       - run: yarn run build
+        working-directory: container
         env:
           PRODUCTION_DOMAIN: ${{ secrets.PRODUCTION_DOMAIN }}
 
-      - uses: jakejarvis/s3-sync-action@master
+      - name: Sync to S3
+        uses: jakejarvis/s3-sync-action@master
         with:
           args: --acl public-read --follow-symlinks --delete --exclude '.git*/*'
         env:
@@ -32,18 +35,18 @@ jobs:
           AWS_S3_BUCKET_NAME: ${{ secrets.AWS_S3_BUCKET_NAME }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           DISTRIBUTION_ID: ${{ secrets.AWS_DISTRIBUTION_ID }}
-          SOURCE_DIR: '/dist'
-          DEST_DIR: '/marketing/latest'
+          SOURCE_DIR: marketing/dist
+          DEST_DIR: marketing/latest
 
       - name: Sync to S3 Cloudfront
         uses: raulanatol/aws-s3-docker-action@master
         env:
           AWS_REGION: ${{ secrets.AWS_REGION }}
-          AWS_S3_BUCKET_NAME: ${{ secrets.AWS_S3_BUCKET_NAME }}
+          AWS_BUCKET_NAME: ${{ secrets.AWS_S3_BUCKET_NAME }}
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          SOURCE: '/dist'
-          TARGET: '/marketing/latest'
-          WITH_CLOUD_FRONT_INVALIDATION: 'true'
+          SOURCE: marketing/dist
+          TARGET: marketing/latest
+          WITH_CLOUD_FRONT_INVALIDATION: true
           AWS_CLOUDFRONT_DISTRIBUTION_ID: ${{ secrets.AWS_CLOUDFRONT_DISTRIBUTION_ID }}
           AWS_CLOUDFRONT_INVALIDATION_PATH: '/marketing/latest/remoteEntry.js'
