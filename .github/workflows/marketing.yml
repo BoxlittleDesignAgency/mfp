@@ -44,6 +44,6 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           SOURCE: '/dist'
           TARGET: '/marketing/latest'
-          WITH_CLOUD_FRONT_INVALIDATION: 'yes'
+          WITH_CLOUD_FRONT_INVALIDATION: 'true'
           AWS_CLOUDFRONT_DISTRIBUTION_ID: ${{ secrets.AWS_CLOUDFRONT_DISTRIBUTION_ID }}
           AWS_CLOUDFRONT_INVALIDATION_PATH: '/marketing/latest/remoteEntry.js'
