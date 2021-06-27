@@ -32,7 +32,7 @@ jobs:
           AWS_S3_BUCKET_NAME: ${{ secrets.AWS_S3_BUCKET_NAME }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           DISTRIBUTION_ID: ${{ secrets.AWS_DISTRIBUTION_ID }}
-          SOURCE_DIR: ${{ secrets.SOURCE }}
+          SOURCE_DIR: "dist"
           DEST_DIR: "container/latest"
 
       - uses: raulanatol/aws-s3-docker-action@master
