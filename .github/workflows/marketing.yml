@@ -18,9 +18,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: yarn install
-        working-directory: container
+        working-directory: marketing
       - run: yarn run build
-        working-directory: container
+        working-directory: marketing
         env:
           PRODUCTION_DOMAIN: ${{ secrets.PRODUCTION_DOMAIN }}
 
