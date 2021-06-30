@@ -26,7 +26,6 @@ export default () => {
   }, []);
 
   console.log("REF WITH => ", ref);
-  console.log("REF WITH CURRENT!! => ", ref.current);
 
   return (<div ref={ref}/>)
 }
