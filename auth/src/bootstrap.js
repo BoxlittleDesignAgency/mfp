@@ -3,9 +3,11 @@ import ReactDOM from 'react-dom';
 import { createMemoryHistory, createBrowserHistory } from 'history';
 import App from './App';
 
-//Mount function
-const mount = (el, { onNavigate, defaultHistory }) => {
-  const history = defaultHistory || createMemoryHistory();
+//Mount function to start up the app
+const mount = (el, { onNavigate, defaultHistory, initialPath }) => {
+  const history = defaultHistory || createMemoryHistory({
+    initialEntries: [initialPath],
+  });
   
   if(onNavigate) {
     history.listen(onNavigate);
@@ -38,4 +40,4 @@ if(process.env.NODE_ENV === 'development') {
 
 //we are running through container
 //and we should export the mount function
-export {mount};
+export { mount };
