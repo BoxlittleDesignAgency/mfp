@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {lazy, Suspense } from 'react';
 import { Switch, Route, Router } from 'react-router-dom';
 import {
   StylesProvider,
@@ -7,21 +7,23 @@ import {
 
 import Signin from './components/Signin';
 import Signup from './components/Signup';
-import Other from './components/Other';
 
 const generateClassName = createGenerateClassName({
   productionPrefix: 'au',
 });
 
-export default ({ history }) => {
+export default ({ history, onSignIn }) => {
   return (
     <div>
       <StylesProvider generateClassName={generateClassName}>
         <Router history={history}>
           <Switch>
-            <Route path="/auth/signin" component={Signin} />
-            <Route path="/auth/signup" component={Signup} />
-            <Route path="/other" compoonent={Other}/>
+            <Route path="/auth/signin">
+              <Signin onSignIn={onSignIn} />
+            </Route>
+            <Route path="/auth/signup">
+              <Signup onSignIn={onSignIn} />
+            </Route>
           </Switch>
         </Router>
       </StylesProvider>
